@@ -5,9 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>老板-购物车</title>
+    <title>搜索列表</title>
     <link rel="stylesheet" href="css/public.css">
-    <link rel="stylesheet" href="sass/car.css">
+    <link rel="stylesheet" href="sass/search.css">
+    <!-- <link rel="stylesheet" href="css/kongtiao.css"> -->
+    <style type="text/css">
+        /* 第一行浮动，其余都是定位 */
+        .cont {
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 54px;
+        }
+
+        .box {
+            float: left;
+            margin: 0 10px 8px 0;
+            background: #fff;
+            width: 298px;
+            height: 346px;
+            padding: 17px 0 18px;
+            text-align: center;
+            position: relative;
+            top: 0;
+        }
+
+        .imgbox {
+            border: solid 1px black;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .imgbox img {
+            width: 200px;
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        onload = function () {
+            new waterfall();
+        }
+
+
+        //			OOP:
+        class waterfall {
+            constructor() {
+                //					1.选元素
+                this.box = document.querySelectorAll(".box");
+                this.cont = document.querySelector(".cont");
+
+                this.boxW = this.box[0].offsetWidth;
+
+                this.clientW = document.documentElement.clientWidth;
+                //					2.完善初始布局
+                this.init()
+            }
+            init() {
+                //					完善布局
+                this.maxNum = Math.floor(this.clientW / this.boxW);
+                this.cont.style.width = this.maxNum * this.boxW + "px";
+                //					3.第一行
+                this.firstLine();
+                //					4.后面的行
+                this.otherLine();
+            }
+            firstLine() {
+                this.heightArr = [];
+                for (var i = 0; i < this.maxNum; i++) {
+                    //						获取所有高度
+                    this.heightArr.push(this.box[i].offsetHeight);
+                }
+            }
+            otherLine() {
+                for (var i = this.maxNum; i < this.box.length; i++) {
+                    //						取到最矮的元素的索引和值
+                    var min = getMin(this.heightArr);
+                    var minIndex = this.heightArr.indexOf(min);
+                    //						设置元素定位
+                    this.box[i].style.position = "absolute";
+                    //						top:头上最矮的那个元素的高度
+                    this.box[i].style.top = min + "px";
+                    //						left:最矮的元素的索引 * 任意图片的宽度
+                    this.box[i].style.left = minIndex * this.boxW + "px";
+                    //						.....
+
+                    //						将元素设置到最矮的那个元素下面之后,要将数组中对应的数据的值增加,增加当前放置元素的高度,方便下次找下一个最矮的元素的高度
+                    this.heightArr[minIndex] += this.box[i].offsetHeight;
+                }
+            }
+        }
+
+
+
+        function getMin(arr) {
+            //				深拷贝
+            var myarr = [];
+            for (var i = 0; i < arr.length; i++) {
+                myarr.push(arr[i]);
+            }
+            return myarr.sort((a, b) => a - b)[0]
+        }
+
+    </script>
 </head>
 
 <body>
@@ -62,141 +160,143 @@
             </div>
         </div>
     </div>
-    <!-- 购物车部分 -->
-    <form action="" method="post" id="car" name="car">
-        <div class="cart">
-            <div class="margin">
-                <!-- 优惠券 -->
-                <div class="coupon">
-                    <h2>
-                        <img class="coupon-icon" src="img/cart01.svg">优惠券
-                    </h2>
-                    <a href="#" class="coupon-r">
-                        <span>正在加载</span>
-                        <span class="more"></span>
-                    </a>
-                </div>
-                <!-- 查看更多优惠券下拉框 -->
-                <div class="more-box">
-                    <div class="item">
-                        <div class="con">
-                            <p>双12提前购100元优惠券</p>
-                            <p>满1000.00减100</p>
-                            <p>2018-12-2-2018-12-14</p>
+    
+    <!-- 产品系列 -->
+    <div class="search-products">
+        <div class="margin">
+            <!-- 小导航 -->
+            <div class="inline-now margin">
+                <a href="index.html">首页</a>
+                ><a href="/Products/index">全部商品</a>
+                ><a>商品列表</a>
+            </div>
+            <!-- 条件 -->
+            <div class="products-search">
+                <ul class="lisr f-cb">
+                    <li id="li_catid">
+                        <span class="title">产品系列 ：</span>
+                        <dl class="con">
+                            <dd>烟灶套餐</dd>
+                            <dd>烟灶消套装</dd>
+                            <dd>烟灶热套装</dd>
+                            <dd>油烟机</dd>
+                            <dd>燃气灶</dd>
+                            <dd>消毒柜</dd>
+                            <dd>洗碗机/净水机</dd>
+                            <dd>蒸箱/烤箱</dd>
+                            <dd>多件套</dd>
+                            <dd>专柜同款</dd>
+                            <dd>周边生活</dd>
+                        </dl>
+                    </li>
+                    <li id="li_range">
+                        <span class="title">价格区间 ：</span>
+                        <dl class="con">
+                            <dd>0-2999</dd>
+                            <dd>3000-4999</dd>
+                            <dd>5000-5999</dd>
+                            <dd>6000-6999</dd>
+                            <dd>7000-7999</dd>
+                            <dd>8000以上</dd>
+                        </dl>
+                    </li>
+                    <li class="last">
+                        <span class="title">已选条件 ：</span>
+                        <div class="con" id="selected">
+                            <a href="#">
+                                烟灶消套装<span class="bb"></span>
+                            </a>
                         </div>
-                        <a href="#">立即领取</a>
-                    </div>
-                    <div class="item">
-                        <div class="con">
-                            <p>双12提前购100元优惠券</p>
-                            <p>满1000.00减100</p>
-                            <p>2018-12-2-2018-12-14</p>
-                        </div>
-                        <a href="#">立即领取</a>
-                    </div>
-                    <div class="item">
-                        <div class="con">
-                            <p>双12提前购100元优惠券</p>
-                            <p>满1000.00减100</p>
-                            <p>2018-12-2-2018-12-14</p>
-                        </div>
-                        <a href="#">立即领取</a>
-                    </div>
-                    <div class="item">
-                        <div class="con">
-                            <p>双12提前购100元优惠券</p>
-                            <p>满1000.00减100</p>
-                            <p>2018-12-2-2018-12-14</p>
-                        </div>
-                        <a href="#">立即领取</a>
-                    </div>
-                </div>
-                <!-- 购物车部分 -->
-                <div class="car-box">
-                    <!-- 购物车标题 -->
-                    <div class="t1 car-b-t">
-                        <label class="tl all-check">
-                            <div class="check fl"></div>
-                            <span class="fl">全选</span>
-                        </label>
-                        <div class="t1 one">商品名称</div>
-                        <div class="t1 two">单价（元）</div>
-                        <div class="t1 the">数量</div>
-                        <div class="t1 four">赠送积分</div>
-                        <div class="t1 five">小计（元）</div>
-                        <div class="t1 six">操作</div>
-                    </div>
+                    </li>
+                </ul>
+            </div>
 
-                    <!-- 商品列表 -->
-                    <ul class="car-list">
-                        <li>
-                            <div class="top f-cb">
-                                <!-- 选框 -->
-                                <div class="check">
-                                    <input type="checkbox" value="2308" name="pid[]" checked itemtype="" data-price=""
-                                        style="display:none">
-                                </div>
-                                <!-- 商品图片 -->
-                                <div class="pic-mes">
-                                    <div class="pic">
-                                        <img src="img/1554944009239.jpg" alt="">
-                                    </div>
-                                    <!-- 商品名字 -->
-                                    <h2>Robam/老板 27A5+37B0+727T 经典升级巨幕款 20m³烟灶消套装</h2>
-                                    <p>27A5+37B0天然气+727T</p>
-                                </div>
-                                <!-- 价格 -->
-                                <div class="price" data-unit="6599.000">
-                                    ¥<span class="unit-html">6599.00</span>
-                                </div>
-                                <!-- 数量 -->
-                                <div class="numbox" data-pdtid="2308" data-type="0">
-                                    <span class="cut">-</span>
-                                    <span class="num">2</span>
-                                    <span class="add">+</span>
-                                    <!-- 数量input -->
-                                    <input class="num-inp" type="hidden">
-                                </div>
-                                <!--赠送积分-->
-                                <div class="jf"></div>
-                                <!-- 小计 -->
-                                <div class="plan">
-                                    ¥<span class="sum-pice">6599.000</span>
-                                </div>
-                                <!-- 操作 -->
-                                <div class="del">删除</div>
+            <div class="products-title margin">
+                <!-- 销量 价格 评价 -->
+                <ul class="fr sort">
+                    <!-- 销量 -->
+                    <li>
+                        <a href="#">
+                            销量
+                            <div class="btnns">
+                                <span class="top"></span>
+                                <span class="bottom"></span>
                             </div>
-                        </li>
-                    </ul>
-
-
-                    <!-- 去结算部分 -->
-                    <div class="cart-bot">
-                        <div class="cart-bot-w">
-                            <label class="all-check">
-                                <div class="check"></div>
-                                <span class="all">全选</span>
-                            </label>
-                            <div class="all-del">删除选中的商品</div>
-                            <a href="/Products" class="shopping">继续购物</a>
-                            <div class="status">
-                                共<span class="all-nun">4</span>
-                                件商品，已选中 <span class="select">1</span>
-                                件
-
+                        </a>
+                    </li>
+                    <!-- 价格 -->
+                    <li>
+                        <a href="#">
+                            价格
+                            <div class="btnns">
+                                <span class="top"></span>
+                                <span class="bottom"></span>
                             </div>
-                            <div class="price">
-                                <span class="pd">合计（免运费）：</span>
-                                <span class="rtewd">¥</span>
-                                <span class="all-price">1498.00</span>
+                        </a>
+                    </li>
+                    <!-- 评价 -->
+                    <li>
+                        <a href="#">
+                            评价
+                            <div class="btnns">
+                                <span class="top"></span>
+                                <span class="bottom"></span>
                             </div>
-                            <div class="js">s去结算</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 商品图 -->
+            <div class="cont">
+                <div class="margin">
+
+                    <div class="box">
+
+                        <div class="imgbox">
+                            <img src="img/1.png" />
                         </div>
                     </div>
+                    <div class="box">
+                        <div class="imgbox">
+                            <img src="img/2.png" />
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="imgbox">
+                            <img src="img/3.png" />
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="imgbox">
+                            <img src="img/4.png" />
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="imgbox">
+                            <img src="img/5.png" />
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="imgbox">
+                            <img src="img/6.png" />
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="imgbox">
+                            <img src="img/7.png" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            <!-- 翻页 -->
+            <div class="page">
+
+            </div>
         </div>
-    </form>
+    </div>
+
 
     <!-- 底部 -->
     <div id="footer">
@@ -380,6 +480,9 @@
             </div>
         </div>
     </div>
+
+
+
 </body>
 
 </html>
