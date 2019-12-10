@@ -9,37 +9,6 @@
     <link rel="stylesheet" href="css/public.css">
     <link rel="stylesheet" href="sass/search.css">
     <!-- <link rel="stylesheet" href="css/kongtiao.css"> -->
-    <style type="text/css">
-        /* 第一行浮动，其余都是定位 */
-        .cont {
-            margin: 0 auto;
-            position: relative;
-            padding-bottom: 54px;
-        }
-
-        .box {
-            float: left;
-            margin: 0 10px 8px 0;
-            background: #fff;
-            width: 298px;
-            height: 346px;
-            padding: 17px 0 18px;
-            text-align: center;
-            position: relative;
-            top: 0;
-        }
-
-        .imgbox {
-            border: solid 1px black;
-            padding: 4px;
-            border-radius: 4px;
-        }
-
-        .imgbox img {
-            width: 200px;
-            display: block;
-        }
-    </style>
     <script type="text/javascript">
         onload = function () {
             new waterfall();
@@ -160,19 +129,19 @@
             </div>
         </div>
     </div>
-    
+
     <!-- 产品系列 -->
-    <div class="search-products">
+    <div id="products" class="search-products">
         <div class="margin">
             <!-- 小导航 -->
-            <div class="inline-now margin">
+            <div class="snav margin">
                 <a href="index.html">首页</a>
                 ><a href="/Products/index">全部商品</a>
                 ><a>商品列表</a>
             </div>
             <!-- 条件 -->
-            <div class="products-search">
-                <ul class="lisr f-cb">
+            <div class="pro">
+                <ul class="list">
                     <li id="li_catid">
                         <span class="title">产品系列 ：</span>
                         <dl class="con">
@@ -204,21 +173,22 @@
                         <span class="title">已选条件 ：</span>
                         <div class="con" id="selected">
                             <a href="#">
-                                烟灶消套装<span class="bb"></span>
+                                油烟机
+                                <span class="bb"></span>
                             </a>
                         </div>
                     </li>
                 </ul>
             </div>
 
-            <div class="products-title margin">
+            <div class="pro-title margin">
                 <!-- 销量 价格 评价 -->
-                <ul class="fr sort">
+                <ul class="sort">
                     <!-- 销量 -->
                     <li>
                         <a href="#">
                             销量
-                            <div class="btnns">
+                            <div class="btns">
                                 <span class="top"></span>
                                 <span class="bottom"></span>
                             </div>
@@ -228,7 +198,7 @@
                     <li>
                         <a href="#">
                             价格
-                            <div class="btnns">
+                            <div class="btns">
                                 <span class="top"></span>
                                 <span class="bottom"></span>
                             </div>
@@ -238,7 +208,7 @@
                     <li>
                         <a href="#">
                             评价
-                            <div class="btnns">
+                            <div class="btns">
                                 <span class="top"></span>
                                 <span class="bottom"></span>
                             </div>
@@ -249,44 +219,156 @@
             <!-- 商品图 -->
             <div class="cont">
                 <div class="margin">
-
                     <div class="box">
-
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
                         <div class="imgbox">
                             <img src="img/1.png" />
                         </div>
-                    </div>
-                    <div class="box">
-                        <div class="imgbox">
-                            <img src="img/2.png" />
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
                         </div>
-                    </div>
-                    <div class="box">
-                        <div class="imgbox">
-                            <img src="img/3.png" />
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
                         </div>
-                    </div>
-                    <div class="box">
-                        <div class="imgbox">
-                            <img src="img/4.png" />
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="imgbox">
-                            <img src="img/5.png" />
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="imgbox">
-                            <img src="img/6.png" />
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="imgbox">
-                            <img src="img/7.png" />
-                        </div>
-                    </div>
 
+                    </div>
+                    <div class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </div>
+                    <div class="box four">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </div>
+                    <div class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 

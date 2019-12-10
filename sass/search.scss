@@ -126,7 +126,220 @@ $width: 1220px;
     }
 }
 
+#products{
+    height: 323px;
+    width: 100%;
+    background: #fafafa;
+    /*小导航*/ 
+    .snav{
+        height: 56px;
+        line-height: 56px;
+        font-size: 13px;
+        color: #848484;
+    }
+    /*条件*/ 
+    .pro{
+        width: 1220px;
+        height:213px;
+        background: #fff;
+        .list{
+            padding-top:22px;
+            li{
+                height: 57px;
+                border-bottom:2px dashed #d6d6d7;
+                span{
+                    font-size:14px;
+                    color: #717071;
+                    float: left;
+                    width: 99px;
+                    line-height: 58px;
+                    padding-left: 39px;
+                }
+                .con{
+                    dd{
+                        font-size:14px;
+                        color: #3e3a39;
+                        float: left; 
+                        line-height: 58px;
+                        margin-right: 32px;
+                    }
+                    a{
+                        float: left;
+                        display: block;
+                        width: 57px;
+                        margin-top: 16px;                       
+                        padding: 0 6px 0 10px;
+                        // height: 23px;
+                        border: 1px solid #97c3d9;
+                        border-radius: 16px;
+                        line-height: 24px;
+                        font-size: 12px;
+                        color: #007bc7;
+                        // span{
+                        //     float: right;
+                        //     width: 14px;
+                        //     height: 14px;
+                        //     background: url(../img/p01.png) no-repeat center;
+                        //     display: block;
+                        //     margin-top: 4px;
+                        //     margin-left: 6px;
+                        // }
+                    }
+                }
+            }
+            li.last{
+                border:none;
+            }
+        }
+    }
 
+    /*销量 价格 评价*/
+    .pro-title{
+        height: 54px;
+        background: #fafafa;
+        width: 100%;
+        .sort{
+            float:right;
+            height: 54px;
+            line-height: 54px;
+            font-size: 16px;
+            color: #717071;
+
+            li{
+                float: left;
+                .btns{
+                    width: 9px;
+                    height: 11px;
+                    margin-top: 8px;
+                    float: right;
+                    // margin-top:20px;
+                    margin:22px 19px 0 9px;
+                    // display: inline;
+                    .top{
+                        background: url(../img/p05.svg) no-repeat center;
+                        margin-bottom: 1px;
+                        display: block;
+                        width: 9px;
+                        height: 5px;
+                    }
+                    .bottom{
+                        background: url(../img/p06.svg) no-repeat center;
+                        display: block;
+                        width: 9px;
+                        height: 5px;
+                    }
+                }
+            }
+        }
+    }
+    /*商品图*/
+     /* 第一行浮动，其余都是定位 */
+    .cont{
+        padding-bottom: 54px;
+        width: 1233px;
+        height:780px;
+        background: #fafafa;
+
+        // width: 256px;
+        // margin: 0 auto;
+        // position: relative;
+        .box {
+            float: left;
+            margin: 0 10px 8px 0;
+            background: #fff;
+            width: 297px;
+            height: 381px;
+            padding: 17px 0 18px;
+            text-align: center;
+            position: relative;
+            top: 0;
+            .bt{
+                width: 100%;
+                font-size: 0;
+                height: 20px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                .red{
+                    display: inline-block;
+                    width: 65px;
+                    height: 20px;
+                    line-height: 20px;
+                    color: #fff;
+                    font-size: 12px;
+                    background: #f71a27;
+                    zoom:1;
+                }
+            }
+            .imgbox {
+                width: 100%;
+                height: 230px;
+                overflow: hidden;
+                position: relative;
+                img {
+                    // width: 200px;
+                    padding-top: 15px;
+                    display: inline;
+                    vertical-align: middle
+                }
+            }
+            .name{
+                width: 256px;
+                margin: 0 auto;
+                position: relative;
+                a{
+                    display: block;
+                    width: 100%;
+                    color: #08c;
+                    h2{
+                        font-size: 16px;
+                        color: #050000;
+                        line-height: 18px;
+                        height: 18px;
+                        overflow: hidden;
+                        margin-bottom: 5px;
+                    }
+                    p{
+                        font-size: 12px;
+                        color: #595757;
+                        line-height: 32px;
+                        height: 32px;
+                        overflow: hidden;
+                        position: relative;
+                        a{
+                            display: block;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            .price{
+                font-size: 13px;
+                color: #c7163a;
+                line-height: 24px;
+                margin-top: 5px;
+                .money{
+                    color: #c7163a;
+                    font-size: 17px;
+                }
+                p{
+                    font-size: 12px;
+                    color: #595757;
+                    line-height: 32px;
+                    height: 32px;
+                    overflow: hidden;
+                    position: relative;
+                }
+            }
+        }
+        .box:nth-child(4) {
+            margin-right:0;
+        }
+
+    }
+
+}
 
 
 
