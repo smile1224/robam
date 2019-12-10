@@ -78,8 +78,52 @@
             <!-- 购物车功能 -->
             <div class="product-intro layui-clear">
                 <!-- 左侧图片 -->
+                <!-- 放大镜 -->
                 <div class="preview-wrap">
-                    <a href=""><img src="img/2.png"></a>
+                    <div class="sBox">
+                        <img src="img/15717959926080.png">
+                        <span></span>
+                    </div>
+
+                    <div class="bBox">
+                        <img src="img/15717959926080.png" />
+                    </div>
+                    <!-- 横排图片 -->
+                    <div class="img-more">
+                        <div class="btn-l">
+                            <img src="img/left.png" alt="">
+                        </div>
+                        <ul class="row">
+                            <li class="row-1">
+                                <a href="#">
+                                    <img src="img/2.png" alt="">
+                                </a>
+                            </li>
+                            <li class="row-1">
+                                <a href="#">
+                                    <img src="img/2.png" alt="">
+                                </a>
+                            </li>
+                            <li class="row-1">
+                                <a href="#">
+                                    <img src="img/2.png" alt="">
+                                </a>
+                            </li>
+                            <li class="row-1">
+                                <a href="#">
+                                    <img src="img/2.png" alt="">
+                                </a>
+                            </li>
+                            <li class="row-1">
+                                <a href="#">
+                                    <img src="img/2.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="btn-r">
+                            <img src="img/right.png" alt="">
+                        </div>
+                    </div>
                 </div>
                 <!-- 右侧详情 -->
                 <div class="itemInfo-wrap">
@@ -189,14 +233,46 @@
         </div>
     </div>
 
-
+    <!-- 商品详情 -->
+    <div id="details">
+        <!-- 头部信息 -->
+        <div class="det-t">
+            <div class="margin">
+                <span>商品详情</span>
+                <span>产品参数</span>
+                <span>用户评价
+                    <i>
+                        （
+                        <label>1</label>
+                        ）
+                    </i>
+                </span>
+                <span>售后保障</span>
+            </div>
+        </div>
+        <!-- 主体 -->
+        <div class="det-con">
+            <div class="margin">
+                <p>
+                    <a href="#">
+                        <img src="img/det0.jpg" alt="">
+                    </a>
+                </p>
+                <p>
+                    <a href="#">
+                        <img src="img/det1.jpg" alt="">
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 
 
     <!-- 底部 -->
     <div id="footer">
         <div class="margin">
             <dl class="f-t">
-                <dd>
+                <dd style="width: 212px;">
                     <a href="#">
                         <img src="img/foot01.png" alt="">
                         <p>官方直营</p>
@@ -375,5 +451,91 @@
         </div>
     </div>
 </body>
+<!-- 放大镜功能 -->
+<script>
+	class Magnifier {
+		constructor() {
+			//				1.选元素
+			this.sBox = document.querySelector(".sBox");
+			this.sSpan = document.querySelector(".sBox span");
+			this.bBox = document.querySelector(".bBox");
+			this.bImg = document.querySelector(".bBox img");
+
+			//				2.绑定事件
+			this.init()
+		}
+		init() {
+			var that = this;
+			//				绑定事件
+			//				进入
+			this.sBox.onmouseover = function () {
+				//					3.显示隐藏的内容
+				that.over()
+			}
+			//				移动
+			this.sBox.onmousemove = function (eve) {
+				var e = eve || window.event;
+				//					4.移动时计算比例
+				that.move(e)
+			}
+			//				离开
+			this.sBox.onmouseout = function () {
+				//					5.隐藏
+				that.out()
+			}
+		}
+		over() {
+			//				显示
+			this.sSpan.style.display = "block";
+			this.bBox.style.display = "block";
+			//				根据右边图和框的比例,计算span的宽高
+			this.sSpanW = (this.bBox.offsetWidth / this.bImg.offsetWidth * this.sBox.offsetWidth);
+			this.sSpanH = (this.bBox.offsetHeight / this.bImg.offsetHeight * this.sBox.offsetHeight);
+			//				设置span的宽高
+			this.sSpan.style.width = this.sSpanW + "px";
+			this.sSpan.style.height = this.sSpanH + "px";
+
+			//				提前获取尺寸,方便将来使用
+			this.sW = this.sBox.offsetWidth;
+			this.sH = this.sBox.offsetHeight;
+
+			this.bW = this.bBox.offsetWidth;
+			this.bH = this.bBox.offsetHeight;
+
+			this.bImgW = this.bImg.offsetWidth;
+			this.bImgH = this.bImg.offsetHeight;
+		}
+		move(e) {
+			//				计算span要移动的left和top
+			var l = e.clientX - this.sBox.offsetLeft - this.sSpan.offsetWidth / 2;
+			var t = e.clientY - this.sBox.offsetTop - this.sSpan.offsetHeight / 2;
+			//				span的边界限定
+			if (l < 0) l = 0;
+			if (t < 0) t = 0;
+			if (l > this.sW - this.sSpanW) {
+				l = this.sW - this.sSpanW;
+			}
+			if (t > this.sH - this.sSpanH) {
+				t = this.sH - this.sSpanH;
+			}
+			//				设置span的位置
+			this.sSpan.style.left = l + "px";
+			this.sSpan.style.top = t + "px";
+			//				根据span移动的位置,计算出比例,在根据比例,计算右边大图要移动的距离
+			this.bImg.style.left = l / (this.sW - this.sSpanW) * (this.bW - this.bImgW) + "px";
+			this.bImg.style.top = t / (this.sH - this.sSpanH) * (this.bH - this.bImgH) + "px";
+		}
+		out() {
+			//				隐藏
+			this.sSpan.style.display = "none";
+			this.bBox.style.display = "none";
+		}
+	}
+
+	new Magnifier();
+</script>
+
+
+
 
 </html>

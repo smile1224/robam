@@ -8,73 +8,7 @@
     <title>搜索列表</title>
     <link rel="stylesheet" href="css/public.css">
     <link rel="stylesheet" href="sass/search.css">
-    <!-- <link rel="stylesheet" href="css/kongtiao.css"> -->
-    <script type="text/javascript">
-        onload = function () {
-            new waterfall();
-        }
 
-
-        //			OOP:
-        class waterfall {
-            constructor() {
-                //					1.选元素
-                this.box = document.querySelectorAll(".box");
-                this.cont = document.querySelector(".cont");
-
-                this.boxW = this.box[0].offsetWidth;
-
-                this.clientW = document.documentElement.clientWidth;
-                //					2.完善初始布局
-                this.init()
-            }
-            init() {
-                //					完善布局
-                this.maxNum = Math.floor(this.clientW / this.boxW);
-                this.cont.style.width = this.maxNum * this.boxW + "px";
-                //					3.第一行
-                this.firstLine();
-                //					4.后面的行
-                this.otherLine();
-            }
-            firstLine() {
-                this.heightArr = [];
-                for (var i = 0; i < this.maxNum; i++) {
-                    //						获取所有高度
-                    this.heightArr.push(this.box[i].offsetHeight);
-                }
-            }
-            otherLine() {
-                for (var i = this.maxNum; i < this.box.length; i++) {
-                    //						取到最矮的元素的索引和值
-                    var min = getMin(this.heightArr);
-                    var minIndex = this.heightArr.indexOf(min);
-                    //						设置元素定位
-                    this.box[i].style.position = "absolute";
-                    //						top:头上最矮的那个元素的高度
-                    this.box[i].style.top = min + "px";
-                    //						left:最矮的元素的索引 * 任意图片的宽度
-                    this.box[i].style.left = minIndex * this.boxW + "px";
-                    //						.....
-
-                    //						将元素设置到最矮的那个元素下面之后,要将数组中对应的数据的值增加,增加当前放置元素的高度,方便下次找下一个最矮的元素的高度
-                    this.heightArr[minIndex] += this.box[i].offsetHeight;
-                }
-            }
-        }
-
-
-
-        function getMin(arr) {
-            //				深拷贝
-            var myarr = [];
-            for (var i = 0; i < arr.length; i++) {
-                myarr.push(arr[i]);
-            }
-            return myarr.sort((a, b) => a - b)[0]
-        }
-
-    </script>
 </head>
 
 <body>
@@ -218,8 +152,8 @@
             </div>
             <!-- 商品图 -->
             <div class="cont">
-                <div class="margin">
-                    <div class="box">
+                <ul class="bbox">
+                    <li class="">
                         <!-- 活动标签 -->
                         <div class="bt">
                             <span class="red">立减300元</span>
@@ -243,8 +177,8 @@
                             <p>754人付款</p>
                         </div>
 
-                    </div>
-                    <div class="box">
+                    </li>
+                    <li class="box">
                         <!-- 活动标签 -->
                         <div class="bt">
                             <span class="red">立减300元</span>
@@ -268,8 +202,9 @@
                             <p>754人付款</p>
                         </div>
 
-                    </div>
-                    <div class="box">
+                    </li>
+
+                    <li class="box">
                         <!-- 活动标签 -->
                         <div class="bt">
                             <span class="red">立减300元</span>
@@ -293,8 +228,8 @@
                             <p>754人付款</p>
                         </div>
 
-                    </div>
-                    <div class="box four">
+                    </li>
+                    <li class="box">
                         <!-- 活动标签 -->
                         <div class="bt">
                             <span class="red">立减300元</span>
@@ -318,8 +253,8 @@
                             <p>754人付款</p>
                         </div>
 
-                    </div>
-                    <div class="box">
+                    </li>
+                    <li class="box">
                         <!-- 活动标签 -->
                         <div class="bt">
                             <span class="red">立减300元</span>
@@ -343,33 +278,8 @@
                             <p>754人付款</p>
                         </div>
 
-                    </div>
-                    <div class="box">
-                        <!-- 活动标签 -->
-                        <div class="bt">
-                            <span class="red">立减300元</span>
-                        </div>
-                        <!-- 图片 -->
-                        <div class="imgbox">
-                            <img src="img/1.png" />
-                        </div>
-                        <!-- 产品信息 -->
-                        <div class="name">
-                            <a href="#">
-                                <h2>商品名字</h2>
-                            </a>
-                            <p>
-                                <a href="#">活动介绍</a>
-                            </p>
-                        </div>
-                        <div class="price">
-                            ￥
-                            <span class="money">2199.00</span>
-                            <p>754人付款</p>
-                        </div>
-
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
 
             <!-- 翻页 -->
@@ -379,12 +289,15 @@
         </div>
     </div>
 
+    <!-- 楼层 -->
+
+
 
     <!-- 底部 -->
     <div id="footer">
         <div class="margin">
             <dl class="f-t">
-                <dd>
+                <dd style="width: 212px;">
                     <a href="#">
                         <img src="img/foot01.png" alt="">
                         <p>官方直营</p>

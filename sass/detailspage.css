@@ -154,6 +154,7 @@ span {
   border: none;
 }
 
+/*商品*/
 #products {
   height: 100%;
   width: 100%;
@@ -178,23 +179,93 @@ span {
   padding-top: 20px;
   margin-bottom: 85px;
   height: 685px;
-  border-bottom: 1px solid #ececec;
   /*左侧图片*/
   /*右侧详情*/
 }
 
 #products .product-intro .preview-wrap {
+  float: left;
+  /*横排图片*/
+}
+
+#products .product-intro .preview-wrap .sBox {
   width: 500px;
   height: 500px;
   border: 1px solid #ececec;
-  float: left;
   text-align: center;
 }
 
-#products .product-intro .preview-wrap img {
-  margin-top: 72px;
+#products .product-intro .preview-wrap .sBox img {
+  max-width: 100%;
+  max-height: 100%;
   display: inline-block;
-  vertical-align: middle;
+  position: relative;
+  top: 50%;
+  /*偏移*/
+  transform: translateY(-50%);
+}
+
+#products .product-intro .preview-wrap .sBox span {
+  background: rgba(200, 200, 200, 0.4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+#products .product-intro .preview-wrap .bBox {
+  z-index: 999;
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  left: 600px;
+  top: 60px;
+  overflow: hidden;
+  display: none;
+}
+
+#products .product-intro .preview-wrap .bBox img {
+  width: 900px;
+  position: absolute;
+}
+
+#products .product-intro .preview-wrap .img-more {
+  margin-top: 20px;
+  width: 502px;
+}
+
+#products .product-intro .preview-wrap .img-more .btn-l {
+  margin-top: 20px;
+  float: left;
+}
+
+#products .product-intro .preview-wrap .img-more .row {
+  margin-left: 30px;
+}
+
+#products .product-intro .preview-wrap .img-more .row li {
+  float: left;
+  width: 82px;
+  height: 82px;
+  border: 1px solid #ececec;
+  text-align: center;
+  margin: 0 2px;
+}
+
+#products .product-intro .preview-wrap .img-more .row li img {
+  display: inline-block;
+  height: 80px;
+  margin: 0 auto;
+  /*水平居中*/
+  position: relative;
+  top: 50%;
+  /*偏移*/
+  transform: translateY(-50%);
+}
+
+#products .product-intro .preview-wrap .img-more .btn-r {
+  margin-top: 20px;
+  float: right;
 }
 
 #products .product-intro .itemInfo-wrap {
@@ -486,6 +557,23 @@ span {
   margin-right: 30px;
 }
 
+/*商品详情*/
+#details .det-t {
+  height: 52px;
+  border-bottom: 1px solid #ececec;
+  border-top: 1px solid #ececec;
+}
+
+#details .det-t span {
+  font-size: 16px;
+  color: #333;
+  margin-right: 60px;
+}
+
+#details .det-con {
+  margin-top: 18px;
+}
+
 /*底部*/
 #footer {
   width: 100%;
@@ -494,7 +582,6 @@ span {
 }
 
 #footer .f-t {
-  margin-left: 98px;
   height: 163px;
   border-bottom: 1px solid #dcdcdc;
 }

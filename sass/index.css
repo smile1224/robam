@@ -388,6 +388,12 @@ span {
 
 #hot .hot-c {
   height: 394px;
+  display: flex;
+  /*弹性盒子*/
+  justify-content: space-between;
+  /*两端对齐，子元素之间有间隙 */
+  flex-flow: row wrap;
+  /*子元素溢出父容器时换行*/
 }
 
 #hot .hot-c li {
@@ -465,7 +471,6 @@ span {
 }
 
 #footer .f-t {
-  margin-left: 98px;
   height: 163px;
   border-bottom: 1px solid #dcdcdc;
 }

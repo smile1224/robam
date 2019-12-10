@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索copy列表</title>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="sass/search copy.css">
+    <!-- <link rel="stylesheet" href="css/kongtiao.css"> -->
+    <script type="text/javascript">
+        onload = function () {
+            new waterfall();
+        }
+
+
+        //			OOP:
+        class waterfall {
+            constructor() {
+                //					1.选元素
+                this.box = document.querySelectorAll(".box");
+                this.cont = document.querySelector(".cont");
+
+                this.boxW = this.box[0].offsetWidth;
+
+                this.clientW = document.documentElement.clientWidth;
+                //					2.完善初始布局
+                this.init()
+            }
+            init() {
+                //					完善布局
+                this.maxNum = Math.floor(this.clientW / this.boxW);
+                this.cont.style.width = this.maxNum * this.boxW + "px";
+                //					3.第一行
+                this.firstLine();
+                //					4.后面的行
+                this.otherLine();
+            }
+            firstLine() {
+                this.heightArr = [];
+                for (var i = 0; i < this.maxNum; i++) {
+                    //						获取所有高度
+                    this.heightArr.push(this.box[i].offsetHeight);
+                }
+            }
+            otherLine() {
+                for (var i = this.maxNum; i < this.box.length; i++) {
+                    //						取到最矮的元素的索引和值
+                    var min = getMin(this.heightArr);
+                    var minIndex = this.heightArr.indexOf(min);
+                    //						设置元素定位
+                    this.box[i].style.position = "absolute";
+                    //						top:头上最矮的那个元素的高度
+                    this.box[i].style.top = min + "px";
+                    //						left:最矮的元素的索引 * 任意图片的宽度
+                    this.box[i].style.left = minIndex * this.boxW + "px";
+                    //						.....
+
+                    //						将元素设置到最矮的那个元素下面之后,要将数组中对应的数据的值增加,增加当前放置元素的高度,方便下次找下一个最矮的元素的高度
+                    this.heightArr[minIndex] += this.box[i].offsetHeight;
+                }
+            }
+        }
+
+
+
+        function getMin(arr) {
+            //				深拷贝
+            var myarr = [];
+            for (var i = 0; i < arr.length; i++) {
+                myarr.push(arr[i]);
+            }
+            return myarr.sort((a, b) => a - b)[0]
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- 导航部分 -->
+    <div id="header" class="header">
+        <!-- 导航头部 -->
+        <div class="top">
+            <div class="margin">
+                <ul class="left">
+                    <li><a href="#">老板电器品牌官网</a></li>
+                    <li><a href="#">收藏官方商城</a></li>
+                    <li><a href="#">购买指南</a></li>
+                    <li><a href="#">客服经理微信号</a></li>
+                    <li><a href="#">电子发票</a></li>
+                </ul>
+                <ul class="right">
+                    <li><a href="#">签到送积分</a></li>
+                    <li><a href="#"><i><img src="img/car.png" alt=""></i>购物车<span>0</span></a></li>
+                    <li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>
+                    <li><a href="#">我的订单</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- logo部分 -->
+        <div class="bottom">
+            <div class="margin">
+                <div class="logo">
+                    <a href="#"><img src="img/logo_40.png" alt=""></a>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">首页</a></li>
+                    </ul>
+                </div>
+                <div class="integral">
+                    <ul>
+                        <li><a href="#">积分兑换</a><span>|</span></li>
+                        <li><a href="#">注册有礼</a></li>
+                    </ul>
+                    <div class="search">
+                        <form action="#">
+                            <input type="text" placeholder="搜索如：油烟机" class="ser">
+                            <input type="submit" class="sbt" value="">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 产品系列 -->
+    <div id="products" class="search-products">
+        <div class="margin">
+            <!-- 小导航 -->
+            <div class="snav margin">
+                <a href="index.html">首页</a>
+                ><a href="/Products/index">全部商品</a>
+                ><a>商品列表</a>
+            </div>
+            <!-- 条件 -->
+            <div class="pro">
+                <ul class="list">
+                    <li id="li_catid">
+                        <span class="title">产品系列 ：</span>
+                        <dl class="con">
+                            <dd>烟灶套餐</dd>
+                            <dd>烟灶消套装</dd>
+                            <dd>烟灶热套装</dd>
+                            <dd>油烟机</dd>
+                            <dd>燃气灶</dd>
+                            <dd>消毒柜</dd>
+                            <dd>洗碗机/净水机</dd>
+                            <dd>蒸箱/烤箱</dd>
+                            <dd>多件套</dd>
+                            <dd>专柜同款</dd>
+                            <dd>周边生活</dd>
+                        </dl>
+                    </li>
+                    <li id="li_range">
+                        <span class="title">价格区间 ：</span>
+                        <dl class="con">
+                            <dd>0-2999</dd>
+                            <dd>3000-4999</dd>
+                            <dd>5000-5999</dd>
+                            <dd>6000-6999</dd>
+                            <dd>7000-7999</dd>
+                            <dd>8000以上</dd>
+                        </dl>
+                    </li>
+                    <li class="last">
+                        <span class="title">已选条件 ：</span>
+                        <div class="con" id="selected">
+                            <a href="#">
+                                油烟机
+                                <span class="bb"></span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pro-title margin">
+                <!-- 销量 价格 评价 -->
+                <ul class="sort">
+                    <!-- 销量 -->
+                    <li>
+                        <a href="#">
+                            销量
+                            <div class="btns">
+                                <span class="top"></span>
+                                <span class="bottom"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- 价格 -->
+                    <li>
+                        <a href="#">
+                            价格
+                            <div class="btns">
+                                <span class="top"></span>
+                                <span class="bottom"></span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- 评价 -->
+                    <li>
+                        <a href="#">
+                            评价
+                            <div class="btns">
+                                <span class="top"></span>
+                                <span class="bottom"></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 商品图 -->
+            <div class="cont">
+                <ul class="bbox">
+                    <li class="">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </li>
+                    <li class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </li>
+
+                    <li class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </li>
+                    <li class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </li>
+                    <li class="box">
+                        <!-- 活动标签 -->
+                        <div class="bt">
+                            <span class="red">立减300元</span>
+                        </div>
+                        <!-- 图片 -->
+                        <div class="imgbox">
+                            <img src="img/1.png" />
+                        </div>
+                        <!-- 产品信息 -->
+                        <div class="name">
+                            <a href="#">
+                                <h2>商品名字</h2>
+                            </a>
+                            <p>
+                                <a href="#">活动介绍</a>
+                            </p>
+                        </div>
+                        <div class="price">
+                            ￥
+                            <span class="money">2199.00</span>
+                            <p>754人付款</p>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 翻页 -->
+            <div class="page">
+
+            </div>
+        </div>
+    </div>
+
+<!-- 楼层 -->
+
+
+
+    <!-- 底部 -->
+    <div id="footer">
+            <div class="margin">
+                <dl class="f-t">
+                    <dd style="width: 212px;">
+                        <a href="#">
+                            <img src="img/foot01.png" alt="">
+                            <p>官方直营</p>
+                        </a>
+                    </dd>
+                    <dd style="width:168px;">
+                        <a href="#">
+                            <img src="img/foot01.png" alt="">
+                            <p>6000家服务网点</p>
+                        </a>
+                    </dd>
+                    <dd style="width:217px;">
+                        <a href="#">
+                            <img src="img/foot01.png" alt="">
+                            <p>100%免费配送</p>
+                        </a>
+                    </dd>
+                    <dd style="width:164px;">
+                        <a href="#">
+                            <img src="img/foot01.png" alt="">
+                            <p>15天无理由退货</p>
+                        </a>
+                    </dd>
+                    <dd style="width:197px;">
+                        <a href="#">
+                            <img src="img/foot01.png" alt="">
+                            <p>45天无理由换货</p>
+                        </a>
+                    </dd>
+                    <dd style="width:180px;">
+                        <a href="#">
+                            <img src="img/foot01.png" alt="">
+                            <p>100%品质保证</p>
+                        </a>
+                    </dd>
+                </dl>
+                <div class="f-c">
+                    <ul class="f-c-l">
+                        <li class="li1">
+                            <h2>购物指南</h2>
+                            <p>
+                                <a target="_blank" href="#">密码相关</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">购物流程</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">交易条款</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">注册登录</a>
+                            </p>
+                        </li>
+                        <li class="li1">
+                            <h2>支付方式</h2>
+                            <p>
+                                <a target="_blank" href="#">网银支付</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">支付宝支付</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">发票说明</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">银联支付</a>
+                            </p>
+                        </li>
+                        <li class="li1">
+                            <h2>物流配送</h2>
+                            <p>
+                                <a target="_blank" href="#">区域安装说明</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">配送方式</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">全场包邮</a>
+                            </p>
+                        </li>
+                        <li class="li1">
+                            <h2>售后服务</h2>
+                            <p>
+                                <a target="_blank" href="#">关于安装</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">售后服务政策</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">退换货说明</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">产品质量保证</a>
+                            </p>
+                        </li>
+                        <li class="li1">
+                            <h2>常见问题</h2>
+                            <p>
+                                <a target="_blank" href="#">积分是什么？</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">积分有什么用？</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">如何获取积分？</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">积分使用规则</a>
+                            </p>
+                        </li>
+                        <li class="li1">
+                            <h2>会员须知</h2>
+                            <p>
+                                <a target="_blank" href="#">邀请好友注册</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">邀请好友送积分</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">安全承诺</a>
+                            </p>
+                        </li>
+                        <li class="li1">
+                            <h2>老板合伙人</h2>
+                            <p>
+                                <a target="_blank" href="#">合伙人政策</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">新手指引</a>
+                            </p>
+                        </li>
+                        <li class="li1">
+                            <h2>文章精选</h2>
+                            <p>
+                                <a target="_blank" href="#">测评-烟机26A7</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">烟机选购</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">净水器选购</a>
+                            </p>
+                            <p>
+                                <a target="_blank" href="#">烤箱选购指南</a>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="f-c-r">
+                        <h2>9510-5855</h2>
+                        <p>全 国 统 一 服 务 热 线</p>
+                        <a href="#" class="link">
+                            <i></i>
+                            在线客服
+                        </a>
+                    </div>
+                </div>
+                <div class="f-b">
+                    <a href="#" target="_blank">关于老板电器</a>
+                    <i></i>
+                    <a href="#" target="_blank">版权说明</a>
+                    <i></i>
+                    <a href="#" target="_blank">联系我们</a>
+                    <i></i>
+                    <a href="#" target="_blank">友情链接</a>
+                    <p>Copyright 2018 版权所有 杭州老板电器股份有限公司 浙ICP备05008711号-8</p>
+                    <a href="#" class="bf" target="_blank">
+                        <img src="img/foot10.svg" alt="">
+                    </a>
+                    <a href="#" class="bf" target="_blank">
+                        <img src="img/foot09.svg" alt="">
+                    </a>
+                    <a href="#" class="bf" target="_blank">
+                        <img src="img/foot10.svg" alt="">
+                    </a>
+                </div>
+            </div>
+    </div>
+
+
+
+</body>
+
+</html>
