@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册页面</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="sass/reg.css">
+    </head>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="margin">
+            <div class="h-l logo">
+                <a href="index.html">
+                    <img src="img/logo_40.png" width="280px">
+                </a>
+            </div>
+            <div class="h-r">
+                <div class="h-r-cont">
+                    <div class="icon">
+                        <img src="img/l-icon1.png">
+                    </div>
+                    <div class="txt">
+                        <h3 class="col-black">全国联保</h3>
+                        6000家服务网点联合质保
+
+                    </div>
+                </div>
+                <div class="h-r-cont">
+                    <div class="icon">
+                        <img src="img/f-icon6-blue.png">
+                    </div>
+                    <div class="txt" style="padding-left:10px;">
+                        <h3 class="col-black">100%免费配送</h3>
+                        承诺送货到户
+
+                    </div>
+                </div>
+                <div class="h-r-cont">
+                    <div class="icon">
+                        <img src="img/f-icon4-blue.png">
+                    </div>
+                    <div class="txt" style="padding-left:10px;">
+                        <h3 class="col-black">15天无理由退货</h3>
+                        质量保证 售后无忧
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主体部分 -->
+    <div id="main" style="padding-bottom:100px;">
+        <div class="margin">
+            <!-- 登录 -->
+            <form method="post" id="myForm">
+                <div class="login">
+                    <div class="login-img">
+                        <a href="#" target="_blank">
+                            <img src="img/banner5de70c4b2dba0.jpg" style="max-width:650px;height: 371px;">
+                        </a>
+                    </div>
+                    <div class="login-txt">
+                        <div class="tab">
+                            <h3 class="active">快捷登录</h3>
+                            <i>|</i>
+                            <h3>账号登录</h3>
+                        </div>
+                        <!-- 快速登录 -->
+                        <div class="tel">
+                            <!-- 输入手机号 -->
+                            <div class="tel1">
+                                <input type="text" class="mobile" id="user" placeholder='请输入手机号' value="">
+                                <div class="t-icon"></div>
+                            </div>
+                            <!-- 短信验证 -->
+                            <div class="mes">
+                                <div class="mes-con">
+                                    <input type="text" id="pass" value="" class="captcha" placeholder="请输入密码">
+                                    <div class="get_captcha" id="log">去登录</div>
+                                </div>
+                            </div>
+                            <!-- 登录按钮 -->
+                            <div class="lo-icon">
+                                <input class="sbt" id="reg" type="button" value="注  册">
+                            </div>
+                            <span id="zhushi"></span>
+                            <div class="xieyi">
+                                未注册的手机号，登录时将自动注册，且代表您已同意
+                                <a href="#" target="_blank">
+                                    <span class="yycode">《注册协议》</span>
+                                </a>
+                            </div>
+                            <!-- 快速登录 -->
+                            <div class="ks">
+                                <span class="middle">快速登录：</span>
+                                <a href="#" target="_blank" class="qq"></a>
+                                <span class="middle col-e">|</span>
+                                <a href="#" target="_blank" class="weixin"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="js/cookie.js"></script>
+<script type="text/javascript">
+    class Register {
+        constructor() {
+            this.user = document.getElementById("user")
+            this.pass = document.getElementById("pass")
+            this.reg = document.getElementById("reg")
+            this.log = document.getElementById("log")
+            this.span = document.querySelector("span")
+
+            this.addEvent();
+        }
+        addEvent() {
+            var that = this;
+            this.reg.onclick = function () {
+                that.u = that.user.value;
+                that.p = that.pass.value;
+
+                that.setMsg();
+            }
+            this.log.onclick = function () {
+                location.href = "login.html";
+            }
+        }
+        setMsg() {
+            //				数据格式:[{user:"admin",pass:"123",onoff:0},{...},{...},...]
+
+            this.msg = getCookie("userMsg") ? JSON.parse(getCookie("userMsg")) : [];
+            //				第一个用户
+            if (this.msg.length < 1) {
+                this.msg.push({
+                    user: this.u,
+                    pass: this.p,
+                    onoff: 0
+                })
+                this.success();
+            } else {
+                //				非第一个用户
+                //					重名了
+                var type = this.msg.some((val, idx) => {
+                    return val.user === this.u;
+                });
+                if (type) {
+                    this.span.innerHTML = "用户名重复";
+                    this.span.style.display = "block";
+                } else {
+                    //					没重名,直接注册
+                    this.msg.push({
+                        user: this.u,
+                        pass: this.p,
+                        onoff: 0
+                    })
+                    this.success();
+                }
+            }
+            setCookie("userMsg", JSON.stringify(this.msg));
+        }
+        success() {
+            this.span.innerHTML = "注册成功!<a href='login.html'>跳转到登录</a>";
+            this.span.style.display = "block";
+            setTimeout(() => {
+                location.href = "login.html";
+            }, 5000)
+        }
+    }
+
+    new Register;
+
+
+</script>
+
+</html>

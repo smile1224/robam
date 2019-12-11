@@ -152,133 +152,7 @@
             </div>
             <!-- 商品图 -->
             <div class="cont">
-                <ul class="bbox">
-                    <li class="">
-                        <!-- 活动标签 -->
-                        <div class="bt">
-                            <span class="red">立减300元</span>
-                        </div>
-                        <!-- 图片 -->
-                        <div class="imgbox">
-                            <img src="img/1.png" />
-                        </div>
-                        <!-- 产品信息 -->
-                        <div class="name">
-                            <a href="#">
-                                <h2>商品名字</h2>
-                            </a>
-                            <p>
-                                <a href="#">活动介绍</a>
-                            </p>
-                        </div>
-                        <div class="price">
-                            ￥
-                            <span class="money">2199.00</span>
-                            <p>754人付款</p>
-                        </div>
-
-                    </li>
-                    <li class="box">
-                        <!-- 活动标签 -->
-                        <div class="bt">
-                            <span class="red">立减300元</span>
-                        </div>
-                        <!-- 图片 -->
-                        <div class="imgbox">
-                            <img src="img/1.png" />
-                        </div>
-                        <!-- 产品信息 -->
-                        <div class="name">
-                            <a href="#">
-                                <h2>商品名字</h2>
-                            </a>
-                            <p>
-                                <a href="#">活动介绍</a>
-                            </p>
-                        </div>
-                        <div class="price">
-                            ￥
-                            <span class="money">2199.00</span>
-                            <p>754人付款</p>
-                        </div>
-
-                    </li>
-
-                    <li class="box">
-                        <!-- 活动标签 -->
-                        <div class="bt">
-                            <span class="red">立减300元</span>
-                        </div>
-                        <!-- 图片 -->
-                        <div class="imgbox">
-                            <img src="img/1.png" />
-                        </div>
-                        <!-- 产品信息 -->
-                        <div class="name">
-                            <a href="#">
-                                <h2>商品名字</h2>
-                            </a>
-                            <p>
-                                <a href="#">活动介绍</a>
-                            </p>
-                        </div>
-                        <div class="price">
-                            ￥
-                            <span class="money">2199.00</span>
-                            <p>754人付款</p>
-                        </div>
-
-                    </li>
-                    <li class="box">
-                        <!-- 活动标签 -->
-                        <div class="bt">
-                            <span class="red">立减300元</span>
-                        </div>
-                        <!-- 图片 -->
-                        <div class="imgbox">
-                            <img src="img/1.png" />
-                        </div>
-                        <!-- 产品信息 -->
-                        <div class="name">
-                            <a href="#">
-                                <h2>商品名字</h2>
-                            </a>
-                            <p>
-                                <a href="#">活动介绍</a>
-                            </p>
-                        </div>
-                        <div class="price">
-                            ￥
-                            <span class="money">2199.00</span>
-                            <p>754人付款</p>
-                        </div>
-
-                    </li>
-                    <li class="box">
-                        <!-- 活动标签 -->
-                        <div class="bt">
-                            <span class="red">立减300元</span>
-                        </div>
-                        <!-- 图片 -->
-                        <div class="imgbox">
-                            <img src="img/1.png" />
-                        </div>
-                        <!-- 产品信息 -->
-                        <div class="name">
-                            <a href="#">
-                                <h2>商品名字</h2>
-                            </a>
-                            <p>
-                                <a href="#">活动介绍</a>
-                            </p>
-                        </div>
-                        <div class="price">
-                            ￥
-                            <span class="money">2199.00</span>
-                            <p>754人付款</p>
-                        </div>
-
-                    </li>
+                <ul class="bbox" id="contt">
                 </ul>
             </div>
 
@@ -288,9 +162,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 楼层 -->
-
 
 
     <!-- 底部 -->
@@ -479,5 +350,118 @@
 
 
 </body>
+<script src="js/ajax.js"></script>
+<script src="js/cookie.js"></script>
+<script type="text/javascript">
+    // 一 渲染页面
+    class Page {
+        constructor() {
+            this.url = "http://localhost/robam/data/goods.json";
+            // 数据拿来放到conta里面
+            this.conta = document.getElementById("contt");
+            // 请求数据
+            this.load()
+            // 绑定添加购物车事件，初始没有em利用事件委托
+            this.addEvent();
+        }
+        load() {
+            // 开启ajax
+            var that = this;
+            ajaxGet(this.url, function (res) {
+                // 数据是否拿到,以及数据的格式
+                // console.log(res);
+                // 解析成对象
+                that.res = JSON.parse(res)
+                // console.log(that.res);
+                // 渲染页面
+                that.display();
+            })
+        }
+        display() {
+            // 拿到数据说明可以去解析填充数据了
+            // console.log(this.res);
+            var str = ""
+            for (var i = 0; i < this.res.length; i++) {
+                // ES6拼接
+                // 自定义属性index = goodsId
+                str += `<li class="box" index="${this.res[i].goodsId}">
+                                <div class="bt">
+                                    <span class="red">立减200元</span>
+                                </div>
+                                <div class="imgbox">
+                                    <img src="${this.res[i].img}" />
+                                </div>
+                                <div class="name">
+                                    <a href="#">
+                                        <h2>${this.res[i].name}</h2>
+                                    </a>
+                                    <p>
+                                        <a href="#">${this.res[i].active}</a>
+                                    </p>
+                                </div>
+                                <div class="price">
+                                    ￥
+                                    <span class="money">${this.res[i].price}</span>
+                                    <em class="addCar">加入购物车</em>
+                                    <p>${this.res[i].pay}</p>
+                                </div>
+                            </li>`
+            }
+            this.conta.innerHTML = str;
+        }
+        addEvent() {
+            var that = this;
+            // 二 点击进入，事件委托
+            this.conta.addEventListener("click", function (eve) {
+                var e = eve || window.event;
+                // 点击找事件源
+                var target = e.target || e.srcElement;
+                if (target.className == "addCar") {
+                    // 1.点击时找到当前点击商品的货号；找到按钮后存商品id的自定义属性
+                    that.id = target.parentNode.parentNode.getAttribute("index");
+                    // 点谁获取谁的id
+                    // console.log(that.id);
+                    //  2.准备存cookie
+                    that.setCookie();
+                }
+            })
+        }
+        setCookie() {
+            // 无值给空数组，有值直接解析了
+            this.goods = getCookie("goodsDECookie") ? JSON.parse(getCookie("goodsDECookie")) : [];
+            // console.log(this.goods);
+            // 3.存之前，判断是第一次还是非第一次
+            if (this.goods.length < 1) { //长度小于1，说明肯定是第一次存。
+                // 直接加入往数组里面填充数据
+                this.goods.push({
+                    id: this.id,//id就是你点击的那一个商品的goodsId;
+                    num: 1//num为1
+                })
+            } else {//虽然页面不是第一次点击，但是可能这个商品是第一次点击，所以依然进行判断
+                var i = 0;
+                var onoff = this.goods.some((val, idx) => {
+                    i = idx;
+                    return val.id === this.id;
+                })
+                //新商品,增加
+                if (!onoff) { //这个商品是第一次点击，与第一次点击商品操作相同
+                    this.goods.push({
+                        id: this.id,//这个this.id在构造函数时获取到的；
+                        num: 1
+                    })
+                } else {
+                    this.goods[i].num++;
+                }
+            }
+            // 4.经过第三步对数据的处理，可以将数据再设置回cookie了
+            // 再塞回去
+            setCookie("goodsDECookie", JSON.stringify(this.goods))//if执行完之后执行这个；
+            // console.log(this.goods)
+            // console.log(JSON.stringify(this.goods))
+        }
+
+    }
+    new Page;
+</script>
 
 </html>

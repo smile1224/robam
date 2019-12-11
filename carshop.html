@@ -37,7 +37,7 @@
         <div class="bottom">
             <div class="margin">
                 <div class="logo">
-                    <a href="#"><img src="img/logo_40.png" alt=""></a>
+                    <a href="index.html"><img src="img/logo_40.png" alt=""></a>
                 </div>
                 <div class="nav">
                     <ul>
@@ -68,7 +68,7 @@
         <div class="cart">
             <div class="margin">
                 <!-- 优惠券 -->
-                <div class="coupon">
+                <div class="coupon" id="look">
                     <h2>
                         <img class="coupon-icon" src="img/cart01.svg">优惠券
                     </h2>
@@ -78,7 +78,7 @@
                     </a>
                 </div>
                 <!-- 查看更多优惠券下拉框 -->
-                <div class="more-box">
+                <div class="more-box" id="mai">
                     <div class="item">
                         <div class="con">
                             <p>双12提前购100元优惠券</p>
@@ -160,54 +160,7 @@
                     <!-- 商品列表 -->
                     <div class="OrderList">
                         <div class="order-content" id="list-cont">
-                            <ul class="item-content layui-clear">
-                                <!-- 单选框 -->
-                                <li class="th th-chk">
-                                    <div class="select-all">
-                                        <div class="cart-checkbox">
-                                            <input class="CheckBoxShop check" id="" type="checkbox" num="all"
-                                                name="select-all" value="true">
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- 商品名称 -->
-                                <li class="th th-item">
-                                    <div class="item-cont">
-                                        <a href="#">
-                                            <img src="img/2.png" alt="">
-                                        </a>
-                                        <div class="text">
-                                            <div class="title">Robam/老板 27A3 巨幕拢吸 19m³侧吸油烟机</div>
-                                            <p>
-                                                <span>27A5+37B0天然气+727T</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- 价格 -->
-                                <li class="th th-price">
-                                    <span class="th-su">¥3099.00</span>
-                                </li>
-                                <!-- 加减数量 -->
-                                <li class="th th-amount">
-                                    <div class="box-btn layui-clear">
-                                        <div class="less layui-btn">-</div>
-                                        <input class="Quantity-input" type="" name="" value="1" disabled="disabled">
-                                        <div class="add layui-btn">+</div>
-                                    </div>
-                                </li>
-                                <!-- 积分 -->
-                                <li class="th th-jf">
-                                    <span class="jf">3099</span>
-                                </li>
-                                <!-- 小计 -->
-                                <li class="th th-sum">
-                                    <span class="sum">¥3099.00</span>
-                                </li>
-                                <!-- 操作 -->
-                                <li class="th th-op">
-                                    <span class="dele-btn">删除</span>
-                                </li>
-                            </ul>
+                            
                         </div>
                     </div>
 
@@ -439,9 +392,147 @@
     </div>
 
 
-      
-      });
-      </script>
+
+    });
+    </script>
 </body>
+<!-- 引入jq -->
+<script src="js/jquery.js"></script>
+<!-- 下拉菜单 -->
+<script>
+    $("#look").get(0).onclick = function(){
+			$("#mai").toggle()
+		}
+</script>
+
+<script src="js/ajax.js"></script>
+<script src="js/cookie.js"></script>
+<script type="text/javascript">
+	class Car {
+		constructor() {
+			this.url = "http://localhost/robam/data/goods.json";
+			// 获取数据
+            this.tbody = document.getElementById("list-cont");
+			this.addEvent();
+			// ajax
+			this.load()
+		}
+		load() {
+			ajaxGet(this.url, (res) => {
+				this.res = JSON.parse(res);
+                // console.log(this.res);
+                // this.display();
+				this.getCookie()
+			})
+		}
+		getCookie() {
+			// 有就解析没有返回空数组
+			this.goods = getCookie("goodsDECookie") ? JSON.parse(getCookie("goodsDECookie")) : [];
+			this.display();
+		}
+		display() {
+			var str = "";
+			for (var i = 0; i < this.res.length; i++) {
+				for (var j = 0; j < this.goods.length; j++) {
+					if (this.res[i].goodsId === this.goods[j].id) {                                    
+                        str += `<ul class="item-content layui-clear" index="${this.res[i].goodsId}">
+                                    <li class="th th-chk">
+                                        <div class="select-all">
+                                            <div class="cart-checkbox">
+                                                <input class="CheckBoxShop check" id="" type="checkbox" num="all"
+                                                    name="select-all" value="true">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="th th-item">
+                                        <div class="item-cont">
+                                            <a href="#">
+                                                <img src="${this.res[i].img}" alt="">
+                                            </a>
+                                            <div class="text">
+                                                <div class="title">${this.res[i].name}</div>
+                                                <p>
+                                                    <span>${this.res[i].type}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="th th-price">
+                                        <span class="th-su">${this.res[i].price}</span>
+                                    </li>
+                                    <li class="th th-amount">
+                                        <div class="box-btn layui-clear">
+                                            <div class="less layui-btn">-</div>
+                                            <input class="Quantity-input" type="" name="" value="${this.goods[j].num}" disabled="disabled">
+                                            <div class="add layui-btn">+</div>
+                                        </div>
+                                    </li>
+                                    <li class="th th-jf">
+                                        <span class="jf">${this.res[i].jifen}*${this.goods[j].num}</span>
+                                    </li>
+                                    <li class="th th-sum">
+                                        <span class="sum">${this.res[i].price}*${this.goods[j].num}</span>
+                                    </li>
+                                    <li class="th th-op">
+                                        <span class="dele-btn">删除</span>
+                                    </li>
+                                </ul>`;
+					}
+				}
+			}
+			this.tbody.innerHTML = str;
+		}
+		addEvent() {
+			var that = this;
+			this.tbody.addEventListener("click", function (eve) {
+				var e = eve || window.event;
+				var target = e.target || e.srcElement;
+				if (target.className == "dele-btn") {
+					// 8.保存删除时的商品id
+					that.id = target.parentNode.parentNode.getAttribute("index");
+					// console.log(that.id)
+					// 9.开始删除：删除DOM，修改cookie
+					target.parentNode.parentNode.remove();
+					that.changeCookie(function (i) {
+						that.goods.splice(i, 1);
+					});
+				}
+			})
+			this.tbody.addEventListener("click", function (eve) {
+				var e = eve || window.event;
+				var target = e.target || e.srcElement;
+				if (target.className == "less") {
+                    var n = document.querySelector(".Quantity-input");
+                    // console.log(n.value);
+                    
+                    n.value != 1 ? n -= n.value - 1 : 1;
+                    // console.log(n);
+                    
+					// 11.保存修改商品的id
+                    that.id = target.parentNode.parentNode.parentNode.parentNode.getAttribute("index");
+					// 保存修改商品的数量；修改cookie
+					that.changeCookie(function (i) {
+						that.goods[i].num = target.value;//自己设的val等于 target.value（是由自己输得）
+
+					})
+				}
+			})
+		}
+		changeCookie(cb) {//当手动使num的数量增加时，仅仅是在页面上显示增加了，一刷新就恢复原样了。所以要更新cookie中的id。cookie中的id等于自己点击的那个按钮所在商品栏的id；
+			// 准备保存出数据的索引，
+			for (var i = 0; i < this.goods.length; i++) {
+				if (this.id == this.goods[i].id) {
+					cb(i);
+					break;
+				}
+			}
+			setCookie("goodsDECookie", JSON.stringify(this.goods))
+		}
+	}
+
+	new Car;
+
+
+
+</script>
 
 </html>

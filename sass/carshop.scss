@@ -137,7 +137,6 @@ $width: 1220px;
         height: 46px;
         line-height: 46px;
         background: #fff;
-        margin-bottom: 22px;
         h2{
             font-size: 14px;
             color: #333;
@@ -172,7 +171,7 @@ $width: 1220px;
     }
     /*查看更多优惠券下拉框*/ 
     .more-box{
-        display:  none;
+        // display:  none;
         background: #fff;
         margin-top: 1px;
         padding: 33px 24px 34px;
@@ -210,6 +209,7 @@ $width: 1220px;
     }
     /*购物车功能部分*/ 
     .cart {
+        margin-top: 22px;
         padding-bottom: 58px;
     }
     // 购物车头部
