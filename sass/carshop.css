@@ -163,6 +163,9 @@ span {
   /*优惠券*/
   /*查看更多优惠券下拉框*/
   /*购物车功能部分*/
+  /*全选*/
+  /*单选框*/
+  /*商品名称*/
 }
 
 #car .coupon {
@@ -170,6 +173,7 @@ span {
   height: 46px;
   line-height: 46px;
   background: #fff;
+  margin-bottom: 22px;
 }
 
 #car .coupon h2 {
@@ -249,13 +253,14 @@ span {
 }
 
 #car .cart {
-  padding-bottom: 180px;
+  padding-bottom: 58px;
 }
 
 #car .cart-table-th {
-  height: 50px;
-  line-height: 50px;
-  background: #f5f5f5;
+  height: 66px;
+  line-height: 66px;
+  background: #ffffff;
+  margin-bottom: 1px;
 }
 
 #car .th {
@@ -266,7 +271,7 @@ span {
 #car .th-chk {
   width: 70px;
   position: relative;
-  margin-left: 43px;
+  margin-left: 30px;
   text-align: left;
 }
 
@@ -282,37 +287,6 @@ span {
   display: inline-block;
 }
 
-#car .CheckBoxShop {
-  width: 16px;
-  height: 16px;
-  border: 1px solid #cccccc;
-  position: relative;
-  top: 4px;
-}
-
-#car .th-item {
-  width: 340px;
-  text-align: left;
-  padding-left: 90px;
-  box-sizing: border-box;
-}
-
-#car .th-price {
-  width: 200px;
-}
-
-#car .th-amount {
-  width: 200px;
-}
-
-#car .th-sum {
-  width: 200px;
-}
-
-#car .th-op {
-  width: 100px;
-}
-
 #car .item-content {
   border: 1px solid #ececee;
   border-bottom: 0;
@@ -322,8 +296,46 @@ span {
   position: relative;
 }
 
+#car .CheckBoxShop {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #cccccc;
+  position: relative;
+  top: 4px;
+}
+
+#car .th-item {
+  width: 390px;
+  text-align: left;
+  padding-left: 122px;
+  box-sizing: border-box;
+}
+
+#car .th-price {
+  width: 156px;
+}
+
+#car .th-amount {
+  width: 170px;
+}
+
+#car .th-jf {
+  width: 114px;
+}
+
+#car .th-sum {
+  width: 116px;
+}
+
+#car .th-op {
+  width: 166px;
+}
+
+#car .order-content {
+  background: #fff;
+}
+
 #car .order-content .th-chk {
-  margin-top: 35px;
   position: relative;
   z-index: 2;
 }
@@ -332,6 +344,147 @@ span {
   position: relative;
   left: -120px;
   z-index: 1;
+}
+
+#car .order-content .th-item .item-cont a {
+  display: block;
+  float: left;
+}
+
+#car .order-content .th-item .item-cont a img {
+  max-width: 92px;
+  max-height: 92px;
+  margin-right: 17px;
+}
+
+#car .order-content .th-item .item-cont .text {
+  text-align: left;
+  line-height: 28px;
+}
+
+#car .order-content .th-item .item-cont .text .title {
+  width: 350px;
+  font-size: 12px;
+  color: #333333;
+}
+
+#car .order-content .th-item .item-cont .text p span {
+  font-size: 12px;
+  color: #666666;
+}
+
+#car .order-content .th-amount input {
+  float: left;
+  border: 1px solid #e2e2e2;
+  text-align: center;
+  background: #ffffff;
+  margin-left: -1px;
+  color: #000;
+  cursor: pointer;
+  width: 48px;
+  height: 38px;
+}
+
+#car .order-content .th-amount div.layui-btn {
+  float: left;
+  border: 1px solid #e2e2e2;
+  text-align: center;
+  background: #ffffff;
+  line-height: 38px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+}
+
+#car .order-content .th-amount .box-btn {
+  padding-left: 22px;
+}
+
+#car .order-content .th-jf span {
+  font-size: 16px;
+  color: #000000;
+}
+
+#car .order-content .th-sum span {
+  font-size: 16px;
+  color: #ff0000;
+}
+
+#car .order-content .th-op span {
+  font-size: 14px;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+
+#car .FloatBarHolder {
+  margin-top: 5px;
+  height: 71px;
+  line-height: 71px;
+  background: #ffffff;
+  position: relative;
+}
+
+#car .FloatBarHolder .quan {
+  width: 70px;
+  position: relative;
+  margin-left: 30px;
+  text-align: left;
+}
+
+#car .FloatBarHolder .quan .select-all {
+  cursor: pointer;
+}
+
+#car .FloatBarHolder .quan .select-all label {
+  cursor: pointer;
+}
+
+#car .FloatBarHolder .th-chk {
+  width: 200px;
+}
+
+#car .FloatBarHolder .th-chk .select-all label {
+  letter-spacing: 4px;
+}
+
+#car .FloatBarHolder .batch-deletion span {
+  cursor: pointer;
+}
+
+#car .FloatBarHolder .continue-shopping {
+  margin-left: 36px;
+  cursor: pointer;
+}
+
+#car .FloatBarHolder .total {
+  float: right;
+  margin-right: 230px;
+}
+
+#car .FloatBarHolder .total span {
+  color: #ff0000;
+  font-size: 26px;
+}
+
+#car .FloatBarHolder .Settlement {
+  float: right;
+}
+
+#car .FloatBarHolder .Settlement button.layui-btn {
+  width: 147px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  background: #ff0000;
+  position: absolute;
+  border: none;
+  right: 30px;
+  top: 13px;
+  cursor: pointer;
 }
 
 /*底部*/

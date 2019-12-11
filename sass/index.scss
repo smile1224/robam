@@ -79,9 +79,11 @@ $width: 1220px;
             }
         }
     }
+    // logo部分
     .bottom{
         height:80px;
         width: 100%;
+        // logo
         .logo{
             float: left;
             margin-right:42px;
@@ -91,6 +93,7 @@ $width: 1220px;
                 height:36px;
             }
         }
+        // 导航
         .nav ul li{
             float:left;
             margin-right: 28px;
@@ -137,6 +140,51 @@ $width: 1220px;
             }
         }
     }
+    // 下拉菜单
+    .aal{
+            width: 100%;
+            height: 68px;
+            padding-top: 39px;
+            margin-top: 0px;
+            padding-bottom: 34px;
+            margin-bottom: 0px;
+            z-index: 9;
+            position: absolute;
+            background: #fff;
+            line-height: 0;
+            padding: 39px 0 34px;
+            border-top: 1px solid #dadada;
+            box-shadow: 0 5px 10px rgba(0,0,0,.1);
+            
+            .drop-down{
+                dd{
+                    float: left;
+                    width: 110px;
+                    position: relative;
+                    top: 0;
+                    text-align: center;
+                    a{
+                        display: block;
+                        width: 100%;
+                        color: #08c;
+                        background: transparent;
+                        text-decoration: none;
+                        img{
+                            height: 33px;
+                            margin-bottom: 13px;
+                            border: 0;
+                            vertical-align: middle;
+                        }
+                        p{
+                            font-size: 12px;
+                            color: #4d4d4d;
+                            line-height: 22px;
+                        }
+                    }
+                }
+            }
+    }
+    
 }
 /*banner部分*/
 #banner{
@@ -166,8 +214,36 @@ $width: 1220px;
             }
         }
     }
-    .banner-r{
+    // 轮播图
+    .box {
+        width: 985px;
+        height: 491px;
+        // margin: 20px auto;
+        position: relative;
         float: right;
+        .imgbox {
+            width: 985px;
+            height: 491px;
+            img{
+                width: 985px;
+                height: 491px;
+            }
+        }
+        .btns input{
+            width: 41px;
+            height: 70px;
+            background: rgba(200, 200, 200, 0.4);
+            border: none;
+            position: absolute;
+            top: 210px;
+        }
+        #left {
+            left: 35px;
+        }
+
+        #right {
+            right: 35px;
+        }
     }
 }
 /*小banner部分*/
@@ -330,6 +406,7 @@ $width: 1220px;
     width: 100%;
     background:#f2f2f2;
     margin-top:196px;
+    padding-bottom: 60px;
     .hot-t{
         height: 92px;
         line-height: 68px;
@@ -541,5 +618,24 @@ $width: 1220px;
         }
     }
 }
-
-
+// 楼层
+.floor{
+    width: 80px;
+    height: 153px;
+    position: fixed;
+    right: 10px;
+    bottom: 80px;
+    background: #fff;
+    li{
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 12px;
+        color: #000;
+        cursor: pointer;
+        border-top: 1px solid #b6b6b6;
+    }
+    li.te{
+        border: 0;
+    }
+}

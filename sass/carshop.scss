@@ -137,6 +137,7 @@ $width: 1220px;
         height: 46px;
         line-height: 46px;
         background: #fff;
+        margin-bottom: 22px;
         h2{
             font-size: 14px;
             color: #333;
@@ -209,24 +210,27 @@ $width: 1220px;
     }
     /*购物车功能部分*/ 
     .cart {
-        padding-bottom: 180px;
+        padding-bottom: 58px;
     }
+    // 购物车头部
     .cart-table-th {
-        height: 50px;
-        line-height: 50px;
-        background: #f5f5f5;
+        height: 66px;
+        line-height: 66px;
+        background: #ffffff;
+        margin-bottom: 1px;
     }
     .th {
         float: left;
         text-align: center;
     }
+    /*全选*/
     .th-chk {
         width: 70px;
         position: relative;
-        margin-left: 43px;
+        margin-left: 30px;
         text-align: left;
         .select-all {
-            cursor: pointer;
+            cursor: pointer;//手型
             label {
                 cursor: pointer;
             }
@@ -234,34 +238,6 @@ $width: 1220px;
     }
     .cart-checkbox {
         display: inline-block;
-    }
-    .CheckBoxShop {
-        width: 16px;
-        height: 16px;
-        border: 1px solid #cccccc;
-        position: relative;
-        top: 4px;
-    }
-    .th-item {
-        width: 340px;
-        text-align: left;
-        padding-left: 90px;
-        box-sizing: border-box;
-    }
-    .th-price {
-        width: 200px;
-    }
-
-    .th-amount {
-        width: 200px;
-    }
-
-    .th-sum {
-        width: 200px;
-    }
-
-    .th-op {
-        width: 100px;
     }
 
     .item-content {
@@ -272,16 +248,198 @@ $width: 1220px;
         box-sizing: border-box;
         position: relative;
     }
-    .order-content{       
+    /*单选框*/
+    .CheckBoxShop {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #cccccc;
+        position: relative;
+        top: 4px;
+    }
+
+    /*商品名称*/
+    .th-item {
+        width: 390px;
+        text-align: left;
+        padding-left: 122px;
+        box-sizing: border-box;
+    }
+    .th-price {
+        width: 156px;
+    }
+
+    .th-amount {
+        width: 170px;
+    }
+    .th-jf {
+        width: 114px;
+    }
+
+    .th-sum {
+        width: 116px;
+    }
+
+    .th-op {
+        width: 166px;
+    }
+
+// 商品列表
+    .order-content{
+        // height: 152px;
+        background: #fff;
         .th-chk {
-            margin-top: 35px;
             position: relative;
             z-index: 2;
         } 
+        // 商品名称
         .th-item {
         position: relative;
         left: -120px;
         z-index: 1;
+        // 商品名称
+        .item-cont {
+            a{
+                display: block;
+                float: left;
+                img {
+                    max-width: 92px;
+                    max-height: 92px;
+                    margin-right: 17px;
+                }
+            }
+            .text {
+                // float: left;
+                text-align: left;
+                line-height: 28px;
+                .title {
+                    width: 350px;
+                    font-size: 12px;
+                    color: #333333;
+                }
+                p {
+                    span{
+                        font-size: 12px;
+                        color: #666666;
+                    }
+                }
+            }
+        }
+        }
+        // 加减数量
+        .th-amount {
+            input {
+                float: left;
+                border: 1px solid #e2e2e2;
+                text-align: center;
+                background: #ffffff;
+                margin-left: -1px;
+                color: #000;
+                cursor: pointer;
+
+                width: 48px;
+                height: 38px;
+            }
+            div.layui-btn {
+                float: left;
+                border: 1px solid #e2e2e2;
+                text-align: center;
+                background: #ffffff;
+                line-height: 38px;
+                width: 38px;
+                height: 38px;
+                padding: 0;
+            }
+            .box-btn {
+                padding-left: 22px;
+            }
+        }
+        // 积分
+        .th-jf span{
+            font-size: 16px;
+            color: #000000;
+        }
+        // 小计
+        .th-sum span {
+            font-size: 16px;
+            // line-height: 101px;
+            color: #ff0000;
+        }
+        // 删除
+        .th-op span {
+            // float: right;
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+
+        }
+    }
+    // 结算底部部分
+    .FloatBarHolder {
+        margin-top: 5px;
+        height: 71px;
+        line-height: 71px;
+        background: #ffffff;
+        position: relative;
+        // 全选
+        .quan {
+            width: 70px;
+            position: relative;
+            margin-left: 30px;
+            text-align: left;
+            .select-all {
+                cursor: pointer;//手型
+                label {
+                    cursor: pointer;
+                }
+            }
+        }
+        // 已选
+        .th-chk {
+            width: 200px;
+            .select-all {
+                label {
+                    letter-spacing: 4px;
+                }
+            }
+        }
+        // 批量删除
+        .batch-deletion span {
+            cursor: pointer;
+        }
+        // 继续购物
+        .continue-shopping{
+            margin-left: 36px;
+            cursor: pointer;
+        }
+        // 总价
+        .total {
+            float: right;
+
+            margin-right: 230px;
+            span {
+                color: #ff0000;
+                font-size: 26px;
+            }
+        }
+        // 去结算
+        .Settlement{
+            float: right;
+            button.layui-btn {
+                width: 147px;
+                height: 45px;
+                line-height: 45px;
+                font-size: 20px;
+                color: #fff;
+                text-align: center;
+                background: #ff0000;
+                position: absolute;
+                border: none;
+                right: 30px;
+                top: 13px;
+                cursor: pointer;
+            }
         }
     }
 

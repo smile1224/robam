@@ -155,6 +155,51 @@ span {
   border: none;
 }
 
+#header .aal {
+  width: 100%;
+  height: 68px;
+  padding-top: 39px;
+  margin-top: 0px;
+  padding-bottom: 34px;
+  margin-bottom: 0px;
+  z-index: 9;
+  position: absolute;
+  background: #fff;
+  line-height: 0;
+  padding: 39px 0 34px;
+  border-top: 1px solid #dadada;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#header .aal .drop-down dd {
+  float: left;
+  width: 110px;
+  position: relative;
+  top: 0;
+  text-align: center;
+}
+
+#header .aal .drop-down dd a {
+  display: block;
+  width: 100%;
+  color: #08c;
+  background: transparent;
+  text-decoration: none;
+}
+
+#header .aal .drop-down dd a img {
+  height: 33px;
+  margin-bottom: 13px;
+  border: 0;
+  vertical-align: middle;
+}
+
+#header .aal .drop-down dd a p {
+  font-size: 12px;
+  color: #4d4d4d;
+  line-height: 22px;
+}
+
 /*banner部分*/
 #banner {
   width: 100%;
@@ -187,8 +232,38 @@ span {
   float: right;
 }
 
-#banner .banner-r {
+#banner .box {
+  width: 985px;
+  height: 491px;
+  position: relative;
   float: right;
+}
+
+#banner .box .imgbox {
+  width: 985px;
+  height: 491px;
+}
+
+#banner .box .imgbox img {
+  width: 985px;
+  height: 491px;
+}
+
+#banner .box .btns input {
+  width: 41px;
+  height: 70px;
+  background: rgba(200, 200, 200, 0.4);
+  border: none;
+  position: absolute;
+  top: 210px;
+}
+
+#banner .box #left {
+  left: 35px;
+}
+
+#banner .box #right {
+  right: 35px;
 }
 
 /*小banner部分*/
@@ -366,6 +441,7 @@ span {
   width: 100%;
   background: #f2f2f2;
   margin-top: 196px;
+  padding-bottom: 60px;
 }
 
 #hot .hot-t {
@@ -602,4 +678,27 @@ span {
 #footer .f-b a.bf {
   width: 47px;
   margin-left: 17px;
+}
+
+.floor {
+  width: 80px;
+  height: 153px;
+  position: fixed;
+  right: 10px;
+  bottom: 80px;
+  background: #fff;
+}
+
+.floor li {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 12px;
+  color: #000;
+  cursor: pointer;
+  border-top: 1px solid #b6b6b6;
+}
+
+.floor li.te {
+  border: 0;
 }
