@@ -414,8 +414,11 @@
         constructor() {
             this.url = "http://localhost/robam/data/goods.json";
             // 获取数据
+            this.checkAll = document.getElementsByClassName('check-all');
+            this.checkInputs = document.getElementsByClassName('check'); // 所有勾选框
+            //全选框
             this.tbody = document.getElementById("list-cont");
-            this.addEvent();
+            this.addDetEvent();
             // ajax
             this.load()
         }
@@ -483,7 +486,7 @@
             }
             this.tbody.innerHTML = str;
         }
-        addEvent() {
+        addDetEvent() {
             var that = this;
             this.tbody.addEventListener("click", function (eve) {
                 var e = eve || window.event;
@@ -502,24 +505,35 @@
             this.tbody.addEventListener("click", function (eve) {
                 var e = eve || window.event;
                 var target = e.target || e.srcElement;
+                // 减数量
                 if (target.className == "less") {
-                    var n = document.querySelector(".Quantity-input");
+                    var put = document.querySelector(".Quantity-input");
                     // console.log(n.value);
-
-                    n.value != 1 ? n -= n.value - 1 : 1;
+                    put.value != 1 ? n -= put.value - 1 : 1;
                     // console.log(n);
-
                     // 11.保存修改商品的id
                     that.id = target.parentNode.parentNode.parentNode.parentNode.getAttribute("index");
                     // 保存修改商品的数量；修改cookie
                     that.changeCookie(function (i) {
-                        that.goods[i].num = target.value;//自己设的val等于 target.value（是由自己输得）
-
+                        that.goods[i].num = put.value;
+                    })
+                }
+                // 增数量
+                if (target.className == "add") {
+                    var put = document.querySelector(".Quantity-input");
+                    // console.log(n.value);
+                    put.value += put.value + 1;
+                    // console.log(n);
+                    // 11.保存修改商品的id
+                    that.id = target.parentNode.parentNode.parentNode.parentNode.getAttribute("index");
+                    // 保存修改商品的数量；修改cookie
+                    that.changeCookie(function (i) {
+                        that.goods[i].num = put.value;
                     })
                 }
             })
         }
-        changeCookie(cb) {//当手动使num的数量增加时，仅仅是在页面上显示增加了，一刷新就恢复原样了。所以要更新cookie中的id。cookie中的id等于自己点击的那个按钮所在商品栏的id；
+        changeCookie(cb) {//改cookie中的id等于自己点击的那个按钮所在商品栏的id；
             // 准备保存出数据的索引，
             for (var i = 0; i < this.goods.length; i++) {
                 if (this.id == this.goods[i].id) {

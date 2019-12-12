@@ -56,9 +56,10 @@
                         <li><a href="#">注册有礼</a></li>
                     </ul>
                     <div class="search">
-                        <form action="#">
-                            <input type="text" placeholder="搜索如：油烟机" class="ser">
-                            <input type="submit" class="sbt" value="">
+                        <form action="search.html">
+                            <input type="text" placeholder="搜索如：油烟机" class="ser" id="search">
+                            <input type="submit" class="sbt" value="" onclick="Submit()">
+                            <div id="content"></div>
                         </form>
                     </div>
                 </div>
@@ -164,8 +165,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- 底部 -->
     <div id="footer">
         <div class="margin">
@@ -349,6 +348,7 @@
         </div>
     </div>
 </body>
+<!-- 向后台要数据渲染页面 -->
 <script src="js/ajax.js"></script>
 <script src="js/cookie.js"></script>
 <script type="text/javascript">
@@ -376,6 +376,7 @@
                 that.display();
             })
         }
+
         display() {
             // 拿到数据说明可以去解析填充数据了
             // console.log(this.res);
@@ -462,7 +463,45 @@
     }
     new Page;
 </script>
+<!-- Ajax搜索，需要前后端配合，将关键字发送一个请求到后端，后端需要将结果的数据传给前端，前端根据返回的数据，重新对页面部分进行渲染 -->
+<script>
+    class Search {
+        constructor() {
+            this.url = "http://localhost/robam/data/goods.json";
+            // 数据拿来放到conta里面
+            this.sea = document.getElementById("search");
+            this.ocontent = document.getElementById("content");
+            // 请求数据
+            this.load()
+        }
+        load() {
+            // 开启ajax
+            var that = this;
+            ajaxGet(this.url, function (res) {
+                // 数据是否拿到,以及数据的格式
+                // console.log(res);
+                // 解析成对象
+                that.res = JSON.parse(res)
+                // console.log(that.res);
+                // 渲染页面
+                that.SearchNotes();
+            })
+        }
+        SearchNotes() {
+            // 拿到数据说明可以去解析填充数据了
+            // console.log(this.res);
+            var str = ""
+            for (var i = 0; i < this.res.length; i++) {
+                // ES6拼接
+                // 自定义属性index = goodsId
+                str += `${this.res[i].name}<br>`
+            }
+            this.ocontent.innerHTML = str;
+        }
+    }
+    new Search;
 
- 
+
+</script>
 
 </html>
