@@ -228,8 +228,144 @@ span {
   color: #fff;
 }
 
-#banner .banner-l ul li span {
+#banner .banner-l ul li a span {
   float: right;
+}
+
+#banner .banner-l ul li .sidebar {
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 235px;
+  display: none;
+  height: 489px;
+  width: 753px;
+  overflow: hidden;
+  border: 1px solid #f5f5f5;
+  border-left: none;
+  background: #fff;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t {
+  padding: 0 34px 0 28px;
+  width: 690px;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .title {
+  padding-top: 6px;
+  height: 51px;
+  width: 690px;
+  border-bottom: 1px solid #ececec;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .title p {
+  line-height: 46px;
+  font-size: 14px;
+  color: #3e3a39;
+  float: left;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .title a {
+  line-height: 46px;
+  float: right;
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .chose dl {
+  width: 100%;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .chose dl dd {
+  float: left;
+  width: 690px;
+  height: 54px;
+  border-bottom: 1px dashed #ececec;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .chose dl dd span {
+  font-size: 14px;
+  color: #000;
+  line-height: 54px;
+  float: left;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .chose dl dd .typl {
+  float: left;
+  font-size: 14px;
+  line-height: 54px;
+  padding: 0 15px;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .chose dl dd .typl a {
+  color: #3e3a39;
+  float: left;
+}
+
+#banner .banner-l ul li .sidebar .centrum-t .chose dl dd.te {
+  border: 0;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid #eeeeee;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b .item {
+  overflow: hidden;
+  position: relative;
+  width: 753px;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b .item ul {
+  width: 753px;
+  left: 0px;
+  position: relative;
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b .item ul li {
+  float: left;
+  width: 250px;
+  height: 314px;
+  text-align: center;
+  cursor: pointer;
+  padding-bottom: 21px;
+  position: relative;
+  border-right: 1px solid #ececec;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b .item ul li a {
+  background: transparent;
+  text-decoration: none;
+  color: #08c;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b .item ul li a .pict {
+  text-align: center;
+  height: 160px;
+  padding-top: 60px;
+  overflow: hidden;
+  position: relative;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b .item ul li a p {
+  font-size: 14px;
+  color: #050000;
+  line-height: 26px;
+  margin-top: 11px;
+  padding: 0 20px;
+}
+
+#banner .banner-l ul li .sidebar .centrum-b .item ul li a h2 {
+  color: #da0028;
+  font-size: 18px;
+  line-height: 25px;
 }
 
 #banner .box {

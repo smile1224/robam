@@ -27,8 +27,8 @@
                 <ul class="right">
                     <li><a href="#">签到送积分</a></li>
                     <li><a href="#"><i><img src="img/car.png" alt=""></i>购物车<span>0</span></a></li>
-                    <li><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>
+                    <li><a href="login.html">登录</a></li>
+                    <li><a href="register.html">注册</a></li>
                     <li><a href="#">我的订单</a></li>
                 </ul>
             </div>
@@ -41,17 +41,19 @@
                 </div>
                 <div class="nav">
                     <ul>
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">首页</a></li>
+                        <li><a href="index.html">首页</a></li>
+                        <li class="two" id="quanbus">
+                            <a href="#">全部商品</a>
+                        </li>
+                        <li><a href="#">12.12年终特惠</a></li>
+                        <li><a href="#">多件多折</a></li>
+                        <li><a href="#">品牌故事</a></li>
                     </ul>
                 </div>
                 <div class="integral">
                     <ul>
                         <li><a href="#">积分兑换</a><span>|</span></li>
-                        <li><a href="#">注册有礼</a></li>
+                        <li><a href="register.html">注册有礼</a></li>
                     </ul>
                     <div class="search">
                         <form action="#">
@@ -160,7 +162,7 @@
                     <!-- 商品列表 -->
                     <div class="OrderList">
                         <div class="order-content" id="list-cont">
-                            
+
                         </div>
                     </div>
 
@@ -400,41 +402,41 @@
 <script src="js/jquery.js"></script>
 <!-- 下拉菜单 -->
 <script>
-    $("#look").get(0).onclick = function(){
-			$("#mai").toggle()
-		}
+    $("#look").get(0).onclick = function () {
+        $("#mai").toggle()
+    }
 </script>
 
 <script src="js/ajax.js"></script>
 <script src="js/cookie.js"></script>
 <script type="text/javascript">
-	class Car {
-		constructor() {
-			this.url = "http://localhost/robam/data/goods.json";
-			// 获取数据
+    class Car {
+        constructor() {
+            this.url = "http://localhost/robam/data/goods.json";
+            // 获取数据
             this.tbody = document.getElementById("list-cont");
-			this.addEvent();
-			// ajax
-			this.load()
-		}
-		load() {
-			ajaxGet(this.url, (res) => {
-				this.res = JSON.parse(res);
+            this.addEvent();
+            // ajax
+            this.load()
+        }
+        load() {
+            ajaxGet(this.url, (res) => {
+                this.res = JSON.parse(res);
                 // console.log(this.res);
                 // this.display();
-				this.getCookie()
-			})
-		}
-		getCookie() {
-			// 有就解析没有返回空数组
-			this.goods = getCookie("goodsDECookie") ? JSON.parse(getCookie("goodsDECookie")) : [];
-			this.display();
-		}
-		display() {
-			var str = "";
-			for (var i = 0; i < this.res.length; i++) {
-				for (var j = 0; j < this.goods.length; j++) {
-					if (this.res[i].goodsId === this.goods[j].id) {                                    
+                this.getCookie()
+            })
+        }
+        getCookie() {
+            // 有就解析没有返回空数组
+            this.goods = getCookie("goodsDECookie") ? JSON.parse(getCookie("goodsDECookie")) : [];
+            this.display();
+        }
+        display() {
+            var str = "";
+            for (var i = 0; i < this.res.length; i++) {
+                for (var j = 0; j < this.goods.length; j++) {
+                    if (this.res[i].goodsId === this.goods[j].id) {
                         str += `<ul class="item-content layui-clear" index="${this.res[i].goodsId}">
                                     <li class="th th-chk">
                                         <div class="select-all">
@@ -476,60 +478,60 @@
                                         <span class="dele-btn">删除</span>
                                     </li>
                                 </ul>`;
-					}
-				}
-			}
-			this.tbody.innerHTML = str;
-		}
-		addEvent() {
-			var that = this;
-			this.tbody.addEventListener("click", function (eve) {
-				var e = eve || window.event;
-				var target = e.target || e.srcElement;
-				if (target.className == "dele-btn") {
-					// 8.保存删除时的商品id
-					that.id = target.parentNode.parentNode.getAttribute("index");
-					// console.log(that.id)
-					// 9.开始删除：删除DOM，修改cookie
-					target.parentNode.parentNode.remove();
-					that.changeCookie(function (i) {
-						that.goods.splice(i, 1);
-					});
-				}
-			})
-			this.tbody.addEventListener("click", function (eve) {
-				var e = eve || window.event;
-				var target = e.target || e.srcElement;
-				if (target.className == "less") {
+                    }
+                }
+            }
+            this.tbody.innerHTML = str;
+        }
+        addEvent() {
+            var that = this;
+            this.tbody.addEventListener("click", function (eve) {
+                var e = eve || window.event;
+                var target = e.target || e.srcElement;
+                if (target.className == "dele-btn") {
+                    // 8.保存删除时的商品id
+                    that.id = target.parentNode.parentNode.getAttribute("index");
+                    // console.log(that.id)
+                    // 9.开始删除：删除DOM，修改cookie
+                    target.parentNode.parentNode.remove();
+                    that.changeCookie(function (i) {
+                        that.goods.splice(i, 1);
+                    });
+                }
+            })
+            this.tbody.addEventListener("click", function (eve) {
+                var e = eve || window.event;
+                var target = e.target || e.srcElement;
+                if (target.className == "less") {
                     var n = document.querySelector(".Quantity-input");
                     // console.log(n.value);
-                    
+
                     n.value != 1 ? n -= n.value - 1 : 1;
                     // console.log(n);
-                    
-					// 11.保存修改商品的id
+
+                    // 11.保存修改商品的id
                     that.id = target.parentNode.parentNode.parentNode.parentNode.getAttribute("index");
-					// 保存修改商品的数量；修改cookie
-					that.changeCookie(function (i) {
-						that.goods[i].num = target.value;//自己设的val等于 target.value（是由自己输得）
+                    // 保存修改商品的数量；修改cookie
+                    that.changeCookie(function (i) {
+                        that.goods[i].num = target.value;//自己设的val等于 target.value（是由自己输得）
 
-					})
-				}
-			})
-		}
-		changeCookie(cb) {//当手动使num的数量增加时，仅仅是在页面上显示增加了，一刷新就恢复原样了。所以要更新cookie中的id。cookie中的id等于自己点击的那个按钮所在商品栏的id；
-			// 准备保存出数据的索引，
-			for (var i = 0; i < this.goods.length; i++) {
-				if (this.id == this.goods[i].id) {
-					cb(i);
-					break;
-				}
-			}
-			setCookie("goodsDECookie", JSON.stringify(this.goods))
-		}
-	}
+                    })
+                }
+            })
+        }
+        changeCookie(cb) {//当手动使num的数量增加时，仅仅是在页面上显示增加了，一刷新就恢复原样了。所以要更新cookie中的id。cookie中的id等于自己点击的那个按钮所在商品栏的id；
+            // 准备保存出数据的索引，
+            for (var i = 0; i < this.goods.length; i++) {
+                if (this.id == this.goods[i].id) {
+                    cb(i);
+                    break;
+                }
+            }
+            setCookie("goodsDECookie", JSON.stringify(this.goods))
+        }
+    }
 
-	new Car;
+    new Car;
 
 
 
